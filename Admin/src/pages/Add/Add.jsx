@@ -11,7 +11,7 @@ const Add = ({url}) => {
         name:"",
         description:"",
         price:"",
-        category:"Salad"
+        category:"Plumber"
     })
 
         const onChangeHandler=(event)=>{
@@ -35,7 +35,7 @@ const Add = ({url}) => {
                     name:"",
                     description:"",
                     price:"",
-                    category:"Salad"
+                    category:"Washing"
                 })
                 setImage(false)
                 toast.success(response.data.message)
@@ -58,25 +58,25 @@ const Add = ({url}) => {
                 <input onChange={(e)=>setImage(e.target.files[0])} type="file" id='image' hidden required />
             </div>
             <div className="add-product-name flex-col">
-                <p>Product Name</p>
+                <p>Service Provider Name</p>
                 <input onChange={onChangeHandler} value={data.name} type="text" name='name' placeholder='Type here' />
                 </div>
                 <div className='add-product-description flex-col'>
-                <p>Product description</p>
+                <p>Service Provider Address and Phone No</p>
                 <textarea onChange={onChangeHandler} value={data.description} name="description" rows="6" placeholder="Write content here" required></textarea>
             </div>
             <div className="add-category-price">
                 <div className="add-category flex-col">
-                    <p>Product category</p>
+                    <p>Service category</p>
                     <select onChange={onChangeHandler} name="category" >
-                        <option value="Salad">Salad</option>
-                        <option value="Rolls">Rolls</option>
-                        <option value="Deserts">Deserts</option>
-                        <option value="Sandwich">Sandwich</option>
-                        <option value="Cake">Cake</option>
-                        <option value="Pure Veg">Pure Veg</option>
-                        <option value="Pasta">Pasta</option>
-                        <option value="Noodels">Noodels</option>
+                        <option value="Washing">Washing</option>
+                        <option value="Househelp">Househelp</option>
+                        <option value="Gardener">Gardener</option>
+                        <option value="Carpenter">Carpenter</option>
+                        <option value="Tutor">Tutor</option>
+                        <option value="Plumber">Plumber</option>
+                        <option value="Electrician">Electrician</option>
+                        
                     </select>
                 </div>
                 <div className="add-price flex-col">

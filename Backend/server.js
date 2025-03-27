@@ -1,38 +1,48 @@
-import express from "express"
-import cors from "cors"
-import { connectDB } from "./config/db.js"
-import serviceRouter from "./routes/serviceRoute.js"
-import userRouter from "./routes/userRoute.js"
-import cartRouter from "./routes/cartRoute.js"
-import orderRouter from "./routes/orderRoute.js"
-import "dotenv/config.js"
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import { connectDB } from "./config/db.js";
+import serviceRouter from "./routes/serviceRoute.js";
+import userRouter from "./routes/userRoute.js";
+import cartRouter from "./routes/cartRoute.js";
+import orderRouter from "./routes/orderRoute.js";
 
+// Load environment variables
+dotenv.config();
 
-//app config
-const app=express()
-const port =4000
+// Initialize Express app
+const app = express();
+const PORT = process.env.PORT || 4000;
 
-//middleware
-app.use(express.json())
-app.use(cors())
+// Middleware
+app.use(express.json());
+app.use(cors());
 
-//db connection
-connectDB();
+// Database Connection
+(async () => {
+  try {
+    console.log("Connecting to MongoDB:", process.env.MONGO_URI);
+    await connectDB();
+    console.log("✅ MongoDB Connected Successfully");
+  } catch (error) {
+    console.error("❌ MongoDB Connection Error:", error.message);
+    process.exit(1); // Exit the process if DB connection fails
+  }
+})();
 
-//api endpoints
-app.use("/api/service",serviceRouter)
-app.use("/images",express.static('uploads'))
-app.use("/api/user",userRouter )
-app.use("/api/cart",cartRouter)
-app.use("/api/order",orderRouter)
+// API Endpoints
+app.use("/api/service", serviceRouter);
+app.use("/images", express.static("uploads"));
+app.use("/api/user", userRouter);
+app.use("/api/cart", cartRouter);
+app.use("/api/order", orderRouter);
 
-app.get("/",(req,res)=>{
-    res.send("API Working")
-})
+// Root Endpoint
+app.get("/", (req, res) => {
+  res.send("🚀 API is Working for Google Solution Challenge!");
+});
 
-app.listen(port,()=>{
-    console.log(`Server started on http://localhost:${port}`)
-})
-
-//mongodb+srv://greatstack:186312@cluster0.ovanjzw.mongodb.net/?
-//retryWrites=true&w=majority&appName=Cluster0
+// Start Server
+app.listen(PORT, () => {
+  console.log(`✅ Server running at: http://localhost:${PORT}`);
+});
