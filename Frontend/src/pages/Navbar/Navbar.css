@@ -5,7 +5,8 @@
     align-items: center;
 }
 .navbar .logo {
-    width: 150px;
+    width: 220px;
+    height: 80px;
 }
 .navbar-menu{
     display: flex;
