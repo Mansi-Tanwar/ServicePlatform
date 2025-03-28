@@ -8,7 +8,7 @@ const ExploreServices = ({ category, setCategory }) => {
       <h1>Explore The Services</h1>
       <p className='explore-services-text'>Choose from a diverse services. Our mission is to provide the help at your ease.</p>
       
-      {/* FIX: <p> ke jagah <div> ka use kiya */}
+
       <div className='explore-services-list'>
         {service_list.map((item, index) => {
           return (
